@@ -13,24 +13,17 @@ class LoginUserTest extends DuskTestCase
 
     public function test_a_user_can_login()
     {   
-        $this->browse(function (Browser $browser) {
+        // Having
+        $user = factory(User::class)->create();
 
-            // Having
-            $user = factory(User::class)->create();
-
-            // When
+        // When
+        $this->browse(function (Browser $browser) use ($user) {
+            
             $browser->visit('login')
-                ->assertTitle('Laravel')
-                ->assertSee('Login')
                 ->type('email',$user->email)
                 ->type('password','password')
                 ->press('Login')
-                ->assertPathIs('/home')
-                ->assertSee('You are logged in!');
-
-            // Then
-            $browser->assertAuthenticated();
-
+                ->assertPathIs('/home');
         });
 
     }

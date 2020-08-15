@@ -12,15 +12,15 @@ class CreatePostsTest extends DuskTestCase
     use DatabaseMigrations;
 
     function test_a_user_can_create_a_post()
-    {
-        $this->browse(function (Browser $browser) {
+    {   
+        // Having
+        $user = factory(User::class)->create();
+        $title = 'esta es una pregunta';
+        $content = 'este es el contenido';
 
-            // Having
-            $user = factory(User::class)->create();
-            $title = 'esta es una pregunta';
-            $content = 'este es el contenido';
-
-            // When
+        // When
+        $this->browse(function (Browser $browser) use ($user,$title,$content) {
+  
             $browser->loginAs($user)
                 ->visit('/posts/create')
                 ->type('title', $title)
@@ -47,17 +47,19 @@ class CreatePostsTest extends DuskTestCase
     }
 
     function test_create_post_from_validation()
-    {  
-        $this->browse(function (Browser $browser){
+    {   
+        // Having
+        $user = factory(User::class)->create();
 
-            $user = factory(User::class)->create();
+        // When
+        $this->browse(function (Browser $browser) use ($user) {
 
             $browser->loginAs($user)
                 ->visitRoute('posts.create')
                 ->press('Publicar')
                 ->assertSeeIn('@title-error','El campo título es obligatorio')
                 ->assertSeeIn('@content-error','El campo contenido es obligatorio')
-                ->assertPathIs('/posts/create');
+                ;
         });
     }
 }
