@@ -20,10 +20,10 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Título') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}"  autofocus>
 
                                 @error('title')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span dusk="title-error" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -36,10 +36,10 @@
                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Contenido') }}</label>
 
                             <div class="col-md-6">
-                                <input id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" value="{{ old('content') }}" required autocomplete="content">
+                                <input id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" value="{{ old('content') }}"  >
 
                                 @error('content')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span dusk="content-error" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

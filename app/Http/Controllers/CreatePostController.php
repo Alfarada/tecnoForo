@@ -15,7 +15,11 @@ class CreatePostController extends Controller
     public function store()
     {   
         // Get currently post
-        $post = new Post(request()->all());
+        $post = new Post(request()->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]));
+
 
         // Get cunrrently auth user and save this post
         auth()->user()->posts()->save($post);
