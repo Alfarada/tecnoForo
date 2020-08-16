@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -13,7 +12,7 @@ class LoginUserTest extends TestCase
     public function test_a_user_can_login()
     {   
         // Having
-        $user = factory(User::class)->create();
+        $user = $this->defaultUser();
 
         // When
         $response = $this->post(route('login'),[

@@ -3,7 +3,6 @@
 namespace Tests\Integration;
 
 use Tests\TestCase;
-use App\{User,Post};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SlugPostTest extends TestCase
@@ -13,13 +12,9 @@ class SlugPostTest extends TestCase
     function test_a_slug_is_generated_and_saved_to_the_database()
     {   
         // Having
-        $user = factory(User::class)->create();
+        $user = $this->defaultUser();
+        $post = $this->makePost(['title' => 'como instalar laravel 7']);
         
-        $post = factory(Post::class)->make([
-            'title' => 'como instalar laravel 7'
-        ]);
-        
-        // When
         $user->posts()->save($post);
         
         // Then
@@ -34,8 +29,8 @@ class SlugPostTest extends TestCase
     function test_old_urls_are_redirect()
     {   
         // Having
-        $user = factory(User::class)->create(['name' => 'lorem ipsum']);
-        $post = factory(Post::class)->make(['title' => 'Old title']);
+        $user = $this->defaultUser();
+        $post = $this->makePost(['title' => 'Old title']);
 
         // When
         $user->posts()->save($post);

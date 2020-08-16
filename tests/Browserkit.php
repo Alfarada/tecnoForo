@@ -2,11 +2,9 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 class Browserkit extends \Laravel\BrowserKitTesting\TestCase
 {   
-    use  CreatesApplication, RefreshDatabase;
+    use  CreatesApplication, TestHelpers;
 
     public $baseUrl = 'http://tecnoforo.test';
 
