@@ -12,11 +12,8 @@ class SlugPostTest extends TestCase
     function test_a_slug_is_generated_and_saved_to_the_database()
     {   
         // Having
-        $user = $this->defaultUser();
-        $post = $this->makePost(['title' => 'como instalar laravel 7']);
-        
-        $user->posts()->save($post);
-        
+        $post = $this->createPost(['title' => 'como instalar laravel 7']);
+
         // Then
         $this->assertDatabaseHas('posts',[
             'slug' => 'como-instalar-laravel-7'
@@ -29,13 +26,11 @@ class SlugPostTest extends TestCase
     function test_old_urls_are_redirect()
     {   
         // Having
-        $user = $this->defaultUser();
-        $post = $this->makePost(['title' => 'Old title']);
+        $post = $this->createPost(['title' => 'Old title']);
 
-        // When
-        $user->posts()->save($post);
-        // Get current post url
+        // Get old post url
         $url = $post->url;
+        
         // Update this post title
         $post->update(['title' => 'New title']);
         

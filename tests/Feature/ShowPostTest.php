@@ -12,11 +12,9 @@ class ShowPostTest extends Browserkit
     public function test_a_user_can_see_the_post_details()
     {
         // Having
-        $user = $this->defaultUser();
-        $post = $this->makePost();
-
-        $user->posts()->save($post);
-
+        $user = $this->defaultUser(['name' => 'lorem ipsum']);
+        $post = $this->createPost(['user_id' => $user->id]);
+        
         // When
         $this->visit($post->url)
             // Then
