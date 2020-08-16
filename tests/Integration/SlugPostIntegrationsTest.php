@@ -31,4 +31,22 @@ class SlugPostTest extends TestCase
         
     }
 
+    function test_old_urls_are_redirect()
+    {   
+        // Having
+        $user = factory(User::class)->create(['name' => 'lorem ipsum']);
+        $post = factory(Post::class)->make(['title' => 'Old title']);
+
+        // When
+        $user->posts()->save($post);
+        // Get current post url
+        $url = $post->url;
+        // Update this post title
+        $post->update(['title' => 'New title']);
+        
+        // Then
+        $this->get($url)
+            ->assertRedirect($post->url);
+    }
+
 }

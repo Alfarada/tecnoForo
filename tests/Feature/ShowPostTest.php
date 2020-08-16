@@ -26,7 +26,6 @@ class ShowPostTest extends Browserkit
 
         // When
         $this->visit($post->url)
-            
             // Then
             ->seeInElement('h1', $post->title)
             ->see($post->content)

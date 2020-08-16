@@ -18,8 +18,8 @@ class CreatePostTest extends TestCase
             ->assertStatus(200);
     }
 
-    public function test_a_guest_user_cannot_crea_a_post()
-    {
+    public function test_a_guest_user_cannot_create_a_post()
+    {   
         $this->get(route('posts.create'))
             ->assertStatus(302)
             ->assertRedirect('login');
