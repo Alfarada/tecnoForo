@@ -27,7 +27,7 @@ class ShowPostTest extends DuskTestCase
         
         // When
         $this->browse(function (Browser $browser) use ($post,$user) {
-            $browser->visitRoute('posts.show', $post)
+            $browser->visitRoute('posts.show', [$post->id,$post->slug])
                     ->assertSeeIn('h1',$post->title)
                     ->assertSee($post->content)
                     ->assertSee($user->name);
