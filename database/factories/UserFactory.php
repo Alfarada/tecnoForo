@@ -32,8 +32,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'title' => $faker->sentence(),
         'content' => $faker->paragraph(),
         'pending' => $faker->boolean(),
-        'user_id' => function () { 
-            return factory(User::class)->create()->id;
-        }
+        'user_id' => factory(User::class)->create()->id
     ];
 });

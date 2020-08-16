@@ -22,6 +22,6 @@ trait TestHelpers
 
     public function makePost(array $attibutes = [])
     {
-        return $this->createPost = factory(Post::class)->make($attibutes);
+        return $this->makePost = factory(Post::class)->make($attibutes);
     }
 }
