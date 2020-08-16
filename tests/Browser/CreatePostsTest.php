@@ -59,7 +59,7 @@ class CreatePostsTest extends DuskTestCase
                 ->press('Publicar')
                 ->assertSeeIn('@title-error','El campo título es obligatorio')
                 ->assertSeeIn('@content-error','El campo contenido es obligatorio')
-                ;
+                ->assertPathIs('/posts/create');
         });
     }
 }

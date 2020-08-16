@@ -2,9 +2,9 @@
 
 namespace Tests\Integration;
 
+use Tests\TestCase;
 use App\{User,Post};
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class SlugPostTest extends TestCase
 {   
