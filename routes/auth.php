@@ -10,3 +10,11 @@ Route::get('/posts/create', 'CreatePostController@create')
 
 Route::post('/posts/create', 'CreatePostController@store')
     ->name('posts.store');
+
+// Comments
+
+Route::get('/comments/create', 'CommentController@create')
+    ->name('comments.create');
+
+Route::post('/comments/{post}/create', 'CommentController@store')
+    ->name('comments.store');
